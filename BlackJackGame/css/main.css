@@ -1,0 +1,65 @@
+
+body{
+    background: url(https://t4.ftcdn.net/jpg/03/25/38/41/360_F_325384191_sg1D5lYWfRedGQsBm8xIHnsSAUUUVxGE.jpg) no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.button{
+    font-size:20pt;
+    background-color: rgb(67, 197, 67);
+    border-radius: 10px;
+    border-style:hidden;
+    border-color: aqua;
+    width: 100px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.buttons{
+    display: grid;
+}
+
+.button:hover{
+    background-color: rgb(100, 255, 100);
+}
+
+.cards{
+    /* margin-left: 100px; */
+    margin-top: 20px;
+    position: absolute;
+    /* justify-content: center; */
+    /* display:inline-block; */
+    /* display: table-cell; */
+    margin-left: 100px;
+
+}
+
+.card_crop{
+    position:relative;
+    overflow:hidden;
+    width: 120px;
+    height: 168px;
+    float: left;
+    margin-left: -70px;
+    /* display: table; */
+}
+
+.crad_crop img {
+    position:absolute;
+    transform: translate(-120px,-168px);
+    /* display: flex;
+    display: inline-block;
+    float: left;  */
+}
+
+.hide {
+    display:none !important
+}
+
+/* .box_cards{
+    /* position: absolute;
+    float: left; 
+    margin-top: 10px;
+} */

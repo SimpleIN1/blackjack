@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>BLACKJACK</title> 
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <img src="iimg/pack.png" alt="">
+
+        <div class="buttons">
+            <input type="submit"class="button" onclick="hit()" value="Hit">
+            <input type="submit"class="button" onclick="stand()" value="Stand">
+            <input type="submit"class="button" onclick="  " value="Double">
+        </div>
+        <h3 id="dealer">0</h3>
+        <h3 id="user">0</h3>
+        <!-- <div id="card0" class="card_crop">
+            <img src="iimg/Cards.png" alt="">
+        </div> -->
+        
+        <div class="box_cards">
+            <div id="cards_user" class="cards">
+
+            </div>
+    
+            <div id="cards_dealer"class="cards">
+    
+            </div>
+        </div>
+        <!-- <div style="margin-bottom:-125px; overflow:hidden;">
+            <img src="iimg/Cards.png" alt="" style="overflow:hidden;"> 
+        </div> -->
+
+
+        <!-- <svg width="250" height="250">
+            <pattern id="pattern" width="100%" height="100%">
+               <image xlink:href="https://img.dni.ru/binaries/game/16/Cards.png" width="250" height="250" preserveAspectRatio="xMidYMin slice"></image>
+            </pattern>
+            <circle cx="125" cy="125" r="100" fill="url(#pattern)"></circle>
+         </svg> -->
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
