@@ -6,27 +6,30 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <img src="iimg/pack.png" alt="">
+        <div class="field">
+            <img src="iimg/pack.png" alt="" class="pack_cards">
 
-        <div class="buttons">
-            <input type="submit"class="button" onclick="hit()" value="Hit">
-            <input type="submit"class="button" onclick="stand(true)" value="Stand">
-            <input type="submit"class="button" onclick="start()" value="Start">
-        </div>
-        
-        
-        <!-- <div id="card0" class="card_crop">
-            <img src="iimg/Cards.png" alt="">
-        </div> -->
-        
-        <div class="box_cards">
-            <h3 id="user">0</h3>
-            <div id="cards_user" class="cards">
-
+            <div class="buttons">
+                <input id="start" type="submit"class="button" onclick="start()" value="Start">
+                <input id="hit" type="submit"class="button" disabled="disabled" onclick="hit()" value="Hit">
+                <input id="stand" type="submit"class="button" onclick="stand(true)" disabled="disabled" value="Stand">
             </div>
-            <h3 id="dealer">0</h3>
-            <div id="cards_dealer"class="cards">
-    
+            
+            
+            <!-- <div id="card0" class="card_crop">
+                <img src="iimg/Cards.png" alt="">
+            </div> -->
+            
+            <div class="box_cards">
+                <h3 id="user">0</h3>
+                <div id="cards_user" class="cards">
+                    
+                </div>
+                <!-- <br> -->
+                <h3 id="dealer">0</h3>
+                <div id="cards_dealer"class="cards">
+        
+                </div>
             </div>
         </div>
         <!-- <div style="margin-bottom:-125px; overflow:hidden;">

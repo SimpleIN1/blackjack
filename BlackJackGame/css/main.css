@@ -18,7 +18,10 @@ body{
 }
 
 .buttons{
+    position: absolute;
     display: grid;
+    margin-top: 200px;
+    margin-left: 50px;
 }
 
 .button:hover{
@@ -27,15 +30,23 @@ body{
 
 .cards{
     /* margin-left: 100px; */
-    margin-top: 20px;
+    /* margin-top: 20px; */
     position: absolute;
     /* justify-content: center; */
     /* display:inline-block; */
     /* display: table-cell; */
-    margin-left: 100px;
+    /* margin-left: 100px; */
 
 }
-
+#cards_user{
+    /* margin-top: 300px; */
+    left: 60%;
+}
+#cards_dealer{
+    top:50%;
+    /* margin-top: 300px; */
+    left: 60%;
+}
 .card_crop{
     position:relative;
     overflow:hidden;
@@ -56,13 +67,33 @@ body{
 
 #user{
     /* margin-top: 100px; */
+    position: absolute;
+    right: 50%;
+}
+
+#dealer{
+    position: absolute  ;
+    top:50%;
+    right: 50%;
 }
 
 .hide {
     display:none !important
 }
 
-/* .box_cards{
-    position: absolute;
+.box_cards{
+    /* position: absolute;
+    display: flex; */
     display: flex;
-} */
+    /* flex-wrap: wrap-reverse; */
+}
+
+.pack_cards{
+    position: absolute;
+    width: 182px;
+    height: 219px;
+}
+
+.field{
+    /* justify-content: ; */
+}

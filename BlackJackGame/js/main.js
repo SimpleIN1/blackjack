@@ -163,6 +163,7 @@ const hit=()=>{
             // document.getElementById("user").innerHTML="Your points: "+get_points(user);
             //document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_card].rank][0]+"px,-"+168*CardSuit[user[count_card].suit]+"px)";
             alert("You lose");
+            stand(true);
         }
         // else{
             
@@ -197,37 +198,56 @@ const stand=(f)=>{
     // let previous_count=count_card;
     do{
         take_card(dealer);
-        console.log(dealer);
-        let cards = document.getElementById("cards_dealer");
-        let div = document.createElement("div");
-        div.setAttribute("class", "card_crop");
-        div.setAttribute("id", "card"+count_card.toString());
-        let img = document.createElement("img");
-        img.setAttribute("id", "card"+count_card.toString()+"."+count_card.toString());
-        img.setAttribute("src","iimg/Cards.png");
-        div.appendChild(img);
-        cards.appendChild(div);
+        if(get_points(dealer)<=21){
+            // console.log(dealer);
+            let cards = document.getElementById("cards_dealer");
+            let div = document.createElement("div");
+            div.setAttribute("class", "card_crop");
+            div.setAttribute("id", "card"+count_card.toString());
+            let img = document.createElement("img");
+            img.setAttribute("id", "card"+count_card.toString()+"."+count_card.toString());
+            img.setAttribute("src","iimg/Cards.png");
+            div.appendChild(img);
+            cards.appendChild(div);
 
-        document.getElementById("dealer").innerHTML="Points of dealer: "+get_points(dealer);
-        // console.log(count_card-previous_count);
+            document.getElementById("dealer").innerHTML="Points of dealer: "+get_points(dealer);
+            // console.log(count_card-previous_count);
 
-        // console.log(dealer[count_card-previous_count].rank+" "+dealer[count_card-previous_count].suit);
+            // console.log(dealer[count_card-previous_count].rank+" "+dealer[count_card-previous_count].suit);
 
-        // console.log(CardRank[dealer[count_card-previous_count].rank][0]+" "+CardSuit[dealer[count_card-previous_count].suit]);
-        
-        document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[dealer[count_dealer].rank][0]+"px,-"+168*CardSuit[dealer[count_dealer].suit]+"px)";
-        ++count_card;
-        ++count_dealer;
+            // console.log(CardRank[dealer[count_card-previous_count].rank][0]+" "+CardSuit[dealer[count_card-previous_count].suit]);
+            
+            document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[dealer[count_dealer].rank][0]+"px,-"+168*CardSuit[dealer[count_dealer].suit]+"px)";
+            ++count_card;
+            ++count_dealer;
+        }
+        else{
+            
+            break;
+        }
+
     }
-    while(f && get_points(dealer)<=21);
+    while(f && get_points(dealer)<21);
 
     if(get_points(dealer)>21 && get_points(user)<=21){
         alert("You win");
+        document.getElementById("hit").disabled="disabled";
+        document.getElementById("stand").disabled="disabled";
+        window.location.reload();
+    }
+    else if(f || get_points(dealer)==21){
+        alert("Dealer win");
+        document.getElementById("hit").disabled="disabled";
+        document.getElementById("stand").disabled="disabled";
+        window.location.reload();
     }
 }
 
 
 const start=()=>{
+    document.getElementById("hit").disabled="";
+    document.getElementById("stand").disabled="";
+    document.getElementById("start").disabled="disabled";
     stand(false);
     hit();
     hit();
