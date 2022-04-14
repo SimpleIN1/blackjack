@@ -54,12 +54,15 @@ body{
     float: left;  */
 }
 
+#user{
+    /* margin-top: 100px; */
+}
+
 .hide {
     display:none !important
 }
 
 /* .box_cards{
-    /* position: absolute;
-    float: left; 
-    margin-top: 10px;
+    position: absolute;
+    display: flex;
 } */

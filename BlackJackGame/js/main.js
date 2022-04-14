@@ -65,32 +65,32 @@ const take_card=(player_arr)=>{
 }
 
 
-const game=()=>{
-    var random_position_card = get_random_position_card();
-    swap_position_card(random_position_card);
-    var dealer=[]; 
-    var user =[];
-    var card_arr=get_arr_card();
+// const game=()=>{
+//     var random_position_card = get_random_position_card();
+//     swap_position_card(random_position_card);
+//     var dealer=[]; 
+//     var user =[];
+//     var card_arr=get_arr_card();
 
-    // console.log(random_position_card.join(' '));
-    // console.log(card_arr);
+//     // console.log(random_position_card.join(' '));
+//     // console.log(card_arr);
 
-    // take_card(dealer);
+//     // take_card(dealer);
 
-    // take_card(user);
-    // take_card(user);
-    // console.log("User "+get_points(user))
+//     // take_card(user);
+//     // take_card(user);
+//     // console.log("User "+get_points(user))
 
-    // take_card(dealer);
-    // console.log("Dealer "+get_points(dealer));
+//     // take_card(dealer);
+//     // console.log("Dealer "+get_points(dealer));
 
-    // if(get_points(dealer)>get_points(user)){
-    //     console.log("You lose");
-    // }
-    // else{
-    //     console.log("You win");
-    // }
-}
+//     // if(get_points(dealer)>get_points(user)){
+//     //     console.log("You lose");
+//     // }
+//     // else{
+//     //     console.log("You win");
+//     // }
+// }
 
 // game();
 
@@ -112,8 +112,12 @@ const game=()=>{
 
 // game1();
 
+
+
 var random_position_card = get_random_position_card();
 swap_position_card(random_position_card);
+
+
 
 // console.log(random_position_card);
 
@@ -123,7 +127,9 @@ var card_arr=get_arr_card();
 
 // game();
 var count_card=0;
-
+var count_user = 0;
+var count_dealer = 0;
+// let previous_count=count_card;
 const hit=()=>{
     
     if(get_points(user)<=21){
@@ -144,11 +150,16 @@ const hit=()=>{
 
         // console.log(CardRank[user[count_card].rank][0]+" "+CardSuit[user[count_card].suit]);
         
-        document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_card].rank][0]+"px,-"+168*CardSuit[user[count_card].suit]+"px)";
+        document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_user].rank][0]+"px,-"+168*CardSuit[user[count_user].suit]+"px)";
         ++count_card;
+        ++count_user;
+        // previous_count=count_card;
         // console.log(p);
-
+        // if(p==21){
+        //     alert("You win")
+        // }
         if(p>21){
+            // previous_count=count_card;
             // document.getElementById("user").innerHTML="Your points: "+get_points(user);
             //document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_card].rank][0]+"px,-"+168*CardSuit[user[count_card].suit]+"px)";
             alert("You lose");
@@ -181,25 +192,45 @@ const hit=()=>{
 
     // console.log(count_card);
 }
-let previous_count=count_card;
-const stand=()=>{
-    take_card(dealer);
-    let cards = document.getElementById("cards_dealer");
-    let div = document.createElement("div");
-    div.setAttribute("class", "card_crop");
-    div.setAttribute("id", "card"+count_card.toString());
-    let img = document.createElement("img");
-    img.setAttribute("id", "card"+count_card.toString()+"."+count_card.toString());
-    img.setAttribute("src","iimg/Cards.png");
-    div.appendChild(img);
-    cards.appendChild(div);
+// let previous_count=count_card;
+const stand=(f)=>{
+    // let previous_count=count_card;
+    do{
+        take_card(dealer);
+        console.log(dealer);
+        let cards = document.getElementById("cards_dealer");
+        let div = document.createElement("div");
+        div.setAttribute("class", "card_crop");
+        div.setAttribute("id", "card"+count_card.toString());
+        let img = document.createElement("img");
+        img.setAttribute("id", "card"+count_card.toString()+"."+count_card.toString());
+        img.setAttribute("src","iimg/Cards.png");
+        div.appendChild(img);
+        cards.appendChild(div);
 
-    document.getElementById("dealer").innerHTML="Your points: "+get_points(dealer);
+        document.getElementById("dealer").innerHTML="Points of dealer: "+get_points(dealer);
+        // console.log(count_card-previous_count);
 
-    // console.log(CardRank[user[count_card].rank][0]+" "+CardSuit[user[count_card].suit]);
-    
-    document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[dealer[count_card-previous_count].rank][0]+"px,-"+168*CardSuit[dealer[count_card-previous_count].suit]+"px)";
-    ++count_card;
+        // console.log(dealer[count_card-previous_count].rank+" "+dealer[count_card-previous_count].suit);
+
+        // console.log(CardRank[dealer[count_card-previous_count].rank][0]+" "+CardSuit[dealer[count_card-previous_count].suit]);
+        
+        document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[dealer[count_dealer].rank][0]+"px,-"+168*CardSuit[dealer[count_dealer].suit]+"px)";
+        ++count_card;
+        ++count_dealer;
+    }
+    while(f && get_points(dealer)<=21);
+
+    if(get_points(dealer)>21 && get_points(user)<=21){
+        alert("You win");
+    }
+}
+
+
+const start=()=>{
+    stand(false);
+    hit();
+    hit();
 }
 
 // window.onload = ()=> {
