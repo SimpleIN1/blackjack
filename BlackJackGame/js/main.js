@@ -65,71 +65,20 @@ const take_card=(player_arr)=>{
 }
 
 
-// const game=()=>{
-//     var random_position_card = get_random_position_card();
-//     swap_position_card(random_position_card);
-//     var dealer=[]; 
-//     var user =[];
-//     var card_arr=get_arr_card();
-
-//     // console.log(random_position_card.join(' '));
-//     // console.log(card_arr);
-
-//     // take_card(dealer);
-
-//     // take_card(user);
-//     // take_card(user);
-//     // console.log("User "+get_points(user))
-
-//     // take_card(dealer);
-//     // console.log("Dealer "+get_points(dealer));
-
-//     // if(get_points(dealer)>get_points(user)){
-//     //     console.log("You lose");
-//     // }
-//     // else{
-//     //     console.log("You win");
-//     // }
-// }
-
-// game();
-
-// const game1=()=>{
-//     cards = document.getElementById("cards");
-//     for(let i=0;i<13;++i){
-//         let div = document.createElement("div");
-//         div.setAttribute("class", "card_crop");
-//         div.setAttribute("id", "card"+i.toString());
-//         let img = document.createElement("img");
-//         img.setAttribute("id", "card"+i.toString()+"."+i.toString());
-//         img.setAttribute("src","iimg/Cards.png");
-//         div.appendChild(img);
-//         cards.appendChild(div);
-    
-//         document.getElementById("card"+i.toString()+"."+i.toString()).style.transform = "translate(-"+120*i+"px,-"+168+"px)";
-//     }
-// }
-
-// game1();
-
-
-
 var random_position_card = get_random_position_card();
 swap_position_card(random_position_card);
 
 
 
-// console.log(random_position_card);
-
 var dealer=[]; 
 var user =[];
 var card_arr=get_arr_card();
 
-// game();
+
 var count_card=0;
 var count_user = 0;
 var count_dealer = 0;
-// let previous_count=count_card;
+
 const hit=()=>{
     
     if(get_points(user)<=21){
@@ -147,59 +96,23 @@ const hit=()=>{
         cards.appendChild(div);
 
         document.getElementById("user").innerHTML="Your points: "+get_points(user);
-
-        // console.log(CardRank[user[count_card].rank][0]+" "+CardSuit[user[count_card].suit]);
         
         document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_user].rank][0]+"px,-"+168*CardSuit[user[count_user].suit]+"px)";
         ++count_card;
         ++count_user;
-        // previous_count=count_card;
-        // console.log(p);
-        // if(p==21){
-        //     alert("You win")
-        // }
+
         if(p>21){
-            // previous_count=count_card;
-            // document.getElementById("user").innerHTML="Your points: "+get_points(user);
-            //document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_card].rank][0]+"px,-"+168*CardSuit[user[count_card].suit]+"px)";
             alert("You lose");
             stand(true);
         }
-        // else{
-            
-        //     // take_card(user);
-    
-        //     // console.log(user);
-        //     // console.log(get_points(user));
-    
-        //     // let cards = document.getElementById("cards_user");
-        //     // let div = document.createElement("div");
-        //     // div.setAttribute("class", "card_crop");
-        //     // div.setAttribute("id", "card"+count_card.toString());
-        //     // let img = document.createElement("img");
-        //     // img.setAttribute("id", "card"+count_card.toString()+"."+count_card.toString());
-        //     // img.setAttribute("src","iimg/Cards.png");
-        //     // div.appendChild(img);
-        //     // cards.appendChild(div);
-    
-        //     // document.getElementById("user").innerHTML="Your points: "+get_points(user);
-    
-        //     // // console.log(CardRank[user[count_card].rank][0]+" "+CardSuit[user[count_card].suit]);
-            
-        //     // document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[user[count_card].rank][0]+"px,-"+168*CardSuit[user[count_card].suit]+"px)";
-        //     // ++count_card;
-        // }
     }
-
-    // console.log(count_card);
 }
-// let previous_count=count_card;
+
 const stand=(f)=>{
-    // let previous_count=count_card;
     do{
         take_card(dealer);
         if(get_points(dealer)<=21){
-            // console.log(dealer);
+
             let cards = document.getElementById("cards_dealer");
             let div = document.createElement("div");
             div.setAttribute("class", "card_crop");
@@ -211,12 +124,6 @@ const stand=(f)=>{
             cards.appendChild(div);
 
             document.getElementById("dealer").innerHTML="Points of dealer: "+get_points(dealer);
-            // console.log(count_card-previous_count);
-
-            // console.log(dealer[count_card-previous_count].rank+" "+dealer[count_card-previous_count].suit);
-
-            // console.log(CardRank[dealer[count_card-previous_count].rank][0]+" "+CardSuit[dealer[count_card-previous_count].suit]);
-            
             document.getElementById("card"+count_card.toString()+"."+count_card.toString()).style.transform = "translate(-"+120*CardRank[dealer[count_dealer].rank][0]+"px,-"+168*CardSuit[dealer[count_dealer].suit]+"px)";
             ++count_card;
             ++count_dealer;
@@ -231,15 +138,15 @@ const stand=(f)=>{
 
     if(get_points(dealer)>21 && get_points(user)<=21){
         alert("You win");
+        document.getElementById("start").disabled="disabled";
         document.getElementById("hit").disabled="disabled";
         document.getElementById("stand").disabled="disabled";
-        window.location.reload();
     }
     else if(f || get_points(dealer)==21){
         alert("Dealer win");
+        document.getElementById("start").disabled="disabled";
         document.getElementById("hit").disabled="disabled";
         document.getElementById("stand").disabled="disabled";
-        window.location.reload();
     }
 }
 
@@ -248,17 +155,15 @@ const start=()=>{
     document.getElementById("hit").disabled="";
     document.getElementById("stand").disabled="";
     document.getElementById("start").disabled="disabled";
+    document.getElementById("reload").disabled="";
+    stand(false);
     stand(false);
     hit();
     hit();
 }
 
-// window.onload = ()=> {
-//     game();
-// }
-
-// take_card(user);
-// take_card(user);
-// console.log(user);
-// console.log(CardRank[user[0].rank][0]);
-// console.log(CardSuit[user[0].suit]);
+const reload=()=>{
+    document.getElementById("hit").disabled="disabled";
+    document.getElementById("stand").disabled="disabled";
+    window.location.reload();
+}
