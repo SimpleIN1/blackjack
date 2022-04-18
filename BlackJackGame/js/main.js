@@ -136,7 +136,20 @@ const stand=(f)=>{
     }
     while(f && get_points(dealer)<21);
 
-    if(get_points(dealer)>21 && get_points(user)<=21){
+	if(f){
+	    if(get_points(dealer) > get_points(user)){
+	alert("Dealer win");
+	document.getElementById("start").disabled="disabled";
+        document.getElementById("hit").disabled="disabled";
+        document.getElementById("stand").disabled="disabled";
+    }
+    else if(get_points(dealer) < get_points(user)){
+	alert("Dealer win");
+        document.getElementById("start").disabled="disabled";
+        document.getElementById("hit").disabled="disabled";
+        document.getElementById("stand").disabled="disabled";
+    }
+    else if(/*get_points(dealer)>21 &&*/ get_points(user)<=21){
         alert("You win");
         document.getElementById("start").disabled="disabled";
         document.getElementById("hit").disabled="disabled";
@@ -148,6 +161,7 @@ const stand=(f)=>{
         document.getElementById("hit").disabled="disabled";
         document.getElementById("stand").disabled="disabled";
     }
+	}
 }
 
 
